@@ -1,0 +1,43 @@
+Admin functions:
+1. Create,update and delete other users (customer, manager, and engineers. )
+
+2. Customers can: 
+	creating a complaint, 
+	view complaints, 
+	tracking the complaint 
+	providing feedback on the resolution (opitional feature)
+
+3. Complaint details:
+	name, 
+	address (with PIN Code), 
+	telephone / mobile number, 
+	type of problem :
+		cannot make a call, 
+		but receive a call or can make calls, 
+		but cannot receive calls 
+		neither make nor receive calls
+
+4. Status of ticket: RAISED>
+
+5. Managers can:
+	pick the tickets from the active ticket list
+	assign them to the engineers based on the PIN code of the customer
+
+6. Engineers can:
+	log in 
+	view all the tickets assigned to him/her
+	
+
+ addCompalint -
+getComplaint -
+getManagerData -
+getUserData -
+login -
+addEngineer -
+getAdminData -
+getEngineerComplain -
+updateComplaint -
+getAllUsers - getUser
+addUser -
+updateUser -
+delete - deleteUser

@@ -1,0 +1,79 @@
+<div class="container py-5 h-100 m-5 text-align-center">
+    <h1 class="text-black fw-bolder mb-4">Ragister Complaint</h1>
+     <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="form-row">
+                <div class="col-4 mb-2">
+                    <div class="row">
+                        <div class="col-4 text-white">
+                            First Name : 
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="First name" [(ngModel)]="firstName">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-4 mb-2">
+                    <div class="row">
+                        <div class="col-4 text-white">
+                            Last Name : 
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="lastName">
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="col-4 mb-2">
+                    <div class="row">
+                        <div class="col-4 text-white">
+                            Address : 
+                        </div>
+                        <div class="col-8">
+                            <textarea type="text"  class="form-control" placeholder="address" [(ngModel)]="address"></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-4 mb-2">
+                    <div class="row">
+                        <div class="col-4 text-white">
+                            Pincode : 
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" placeholder="Pincode" [(ngModel)]="pincode">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-4 mb-2">
+                <div class="row">
+                        <div class="col-4 text-white">
+                            <p>Complaint</p>
+                        </div>
+                        <div class="col-8 mr-3">
+                            <select [(ngModel)]="complaint" name="reason">
+                                <option [value]="reason" *ngFor="let reason of reasons;">{{reason}}</option>
+                        </select>
+                        </div>
+                </div>
+                </div>
+                <div class="col-4 mb-2">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-lgbtn btn-warning fs-5" (click)="submit()">File Complaint</button>
+                    </div>
+                </div>
+                <div class="col-4 mb-2"  *ngIf="!tokenId">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-lgbtn btn-danger fs-5" (click)="submit()">View Previous Complaint</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mb-2" *ngIf="tokenId">
+                <span >Your Tracking id is : <h3 class="tokenId">{{tokenId}}</h3></span>
+                <div class="d-grid">
+                    <button class="btn btn-lgbtn btn-danger fs-5" (click)="moveTOAllComplaint()">Move to View Complaint</button>
+                </div>
+             </div>
+     </div>
+ </div>    

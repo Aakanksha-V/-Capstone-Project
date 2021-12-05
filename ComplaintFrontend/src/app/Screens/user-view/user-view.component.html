@@ -1,0 +1,51 @@
+<ng-container >
+    <div class="text-center text-black">
+        <h1 class="text-black fw-bolder mb-4"> Complete Admin Access</h1>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="row text-center">
+            <div class="col-3">
+               <input type="number" name="id" placeholder="Enter the id : " class="p-2 w-100" [(ngModel)]="id" disabled>
+            </div>
+            <div class="col-3">
+                <input type="text" name="name" placeholder="Enter the full Name : " class="p-2 w-100" [(ngModel)]="name">
+            </div>
+            <div class="col-3">
+                <select name="role" [(ngModel)]="roleAssigned" class="p-2 w-100">
+                    <option [value]="role" *ngFor="let role of roles">{{role}}</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-dark" (click)="addUser()" >{{addButtonText}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <table class="table table-dark text-center">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>Role</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                <tr *ngFor="let user of tableData;let i = index;">
+                    <td>{{user[0]}}</td>
+                    <td>{{user[1]}}</td>
+                    <td>{{user[2]}}</td>
+                    <td>{{user[3]}}</td>
+                    <td *ngIf="user[3] === 'ADMIN';" colspan="2">
+                        <p class="text-danger">Cannot Perform Operation on Admin</p>
+                    </td>
+                    <td  *ngIf="user[3] !== 'ADMIN';">
+                        <button class="btn btn-warning" (click)="update(i)">Modify</button>
+                    </td>
+                    <td  *ngIf="user[3] !== 'ADMIN';">
+                        <button class="btn btn-danger" (click)="deleteUser(i)">Delete</button>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</ng-container>

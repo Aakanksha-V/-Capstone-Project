@@ -1,0 +1,11 @@
+
+.imageLogo{
+    background: #6a11cb;
+    border-color:  #6a11cb;;
+}
+
+@media screen and (max-width : 1000px){
+    .imageLogo { 
+        display: none;
+    }
+}

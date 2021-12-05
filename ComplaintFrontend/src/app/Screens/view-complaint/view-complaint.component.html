@@ -1,0 +1,82 @@
+<ng-container >
+    <div class="text-center text-black">
+        <h1 class="text-black fw-bolder mb-4"> View Complaint</h1>
+    </div>
+    <div class="mt-5">
+        <table class="table table-dark ">
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let columnName of columnInResult" class="text-center">{{columnName}}</th>
+                </tr>
+                <ng-container *ngIf="role === 'USER'">
+                    <tr scope="col" class="text-center" *ngFor="let data of tableData;" >
+                        <td>{{data[0]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td><ng-template *ngIf="data[2] != 'RAISED';else elseBlock">{{data[3]}}</ng-template>
+                        <ng-template #elseBlock>Not Applicable</ng-template></td>
+                   </tr>
+                </ng-container>
+                <ng-container *ngIf="role === 'MANAGER'">
+                    <tr scope="col" class="text-center" *ngFor="let data of tableData;let i = index;" >
+                   <td>{{data[0]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td>{{data[4]}}</td>
+                        <td >
+                            <ng-container *ngIf="data[3] !== '0';">{{data[3]}}</ng-container>
+                            <ng-container *ngIf="data[3] === '0';"k>
+                                <select [(ngModel)]="engineerAssigned" name="engineer">
+                                    <option [value]="name" *ngFor="let name of engineerName;">{{name}}</option>
+                                </select>
+                            </ng-container>
+                        </td>
+                        <td>
+                            <ng-container *ngIf="data[3] === '0';">
+                                <button class="btn btn-warning" (click)="assignEngineer(i)">Assign</button>
+                            </ng-container>
+                            <ng-container *ngIf="data[3] !== '0';">
+                                <button class="btn btn-success" (click)="alert()">Alredy Assign</button>
+                            </ng-container>
+                        </td>
+                   </tr>
+                </ng-container>
+                <ng-container *ngIf="role === 'ADMIN'">
+                    <tr scope="col" class="text-center" *ngFor="let data of tableData;" >
+                        <td>{{data[0]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td>{{data[5]}}</td>
+                        <td>{{data[3]}}</td>
+                        
+                    </tr>
+                   
+                </ng-container>
+                <ng-container *ngIf="role === 'ENGINEER'">
+                    <tr scope="col" class="text-center" *ngFor="let data of tableData;let i = index;" >
+                        <td>{{data[0]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td>
+                            <select [(ngModel)]="data[3]" name="engineer">
+                                <option [value]="name" *ngFor="let name of status;">{{name}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="transffer" [checked]="data[4] === 'YES'" [value]="data[4] === 'YES'" (change)="assignField(i)">
+                        </td>
+                        <td>
+                          <button class="btn btn-warning" (click)="update(i)">Update</button>
+                        </td>
+                   </tr>
+                </ng-container>
+              </thead>
+              <tbody>
+                
+              </tbody>
+        </table>
+        <div class="text-center" *ngIf="role === 'ADMIN'">
+            <button class="btn btn-danger" (click)="superDataSet()">Add User</button>
+        </div>
+    </div>
+</ng-container>
